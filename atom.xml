@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>hojun</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="/"/>
+  <updated>2019-09-29T06:14:11.626Z</updated>
+  <id>/</id>
+  
+  <author>
+    <name>hojun</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>还没修复完毕啊</title>
+    <link href="/2019/09/29/%E8%BF%98%E6%B2%A1%E4%BF%AE%E5%A4%8D%E5%AE%8C%E6%AF%95%E5%95%8A/"/>
+    <id>/2019/09/29/还没修复完毕啊/</id>
+    <published>2019-09-29T05:56:31.000Z</published>
+    <updated>2019-09-29T06:14:11.626Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;ol&gt;
+&lt;li&gt;koch雪花  分形&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;代码&lt;/p&gt;
+&lt;p&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/p&gt;
+&lt;p&gt;#include &amp;lt;string.h&amp;gt;&lt;br&gt;static char&lt;em&gt; image;&lt;br&gt;static
+        
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo-Theme-Sakura</title>
+    <link href="/2018/12/12/Hexo-Theme-Sakura/"/>
+    <id>/2018/12/12/Hexo-Theme-Sakura/</id>
+    <published>2018-12-12T14:16:01.000Z</published>
+    <updated>2019-09-29T05:55:17.987Z</updated>
+    
+    <summary type="html">
+    
+      hexo-sakura主题使用教程
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="web" scheme="/tags/web/"/>
+    
+      <category term="悦读" scheme="/tags/%E6%82%A6%E8%AF%BB/"/>
+    
+  </entry>
+  
+</feed>
