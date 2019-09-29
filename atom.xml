@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2019-09-29T06:14:11.626Z</updated>
+  <updated>2019-09-29T07:29:16.499Z</updated>
   <id>/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>测试模块</title>
+    <link href="/2019/09/29/%E6%B5%8B%E8%AF%95%E6%A8%A1%E5%9D%97/"/>
+    <id>/2019/09/29/测试模块/</id>
+    <published>2019-09-29T07:27:04.000Z</published>
+    <updated>2019-09-29T07:29:16.499Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;pre&gt;&lt;code&gt;#include &amp;lt;stdio.h&amp;gt;
+#include &amp;lt;string.h&amp;gt;
+static char* image;
+static int x, y, w, h;
+static void Put(int i, int j, char
+        
+      
+    
+    </summary>
+    
+      <category term="测试" scheme="/categories/%E6%B5%8B%E8%AF%95/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>还没修复完毕啊</title>
