@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2019-09-29T12:28:35.336Z</updated>
+  <updated>2019-09-30T12:03:38.743Z</updated>
   <id>/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>聪明的学生 分形</title>
+    <link href="/2019/09/30/%E8%81%AA%E6%98%8E%E7%9A%84%E5%AD%A6%E7%94%9F-%E5%88%86%E5%BD%A2/"/>
+    <id>/2019/09/30/聪明的学生-分形/</id>
+    <published>2019-09-30T11:53:27.000Z</published>
+    <updated>2019-09-30T12:03:38.743Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;一位教授逻辑学的教授有三名非常善于推理且精于心算的学生A，B和C。有一天,教授给他们三人出了一道题：教授在每个人脑门上贴了一张纸条并告诉他们，每个人的纸条上都写了一个正整数，且某两个数的和等于第三个。于是，每个学生都能看见贴在另外两个同学头上的整数，但却看不见自己的数。&lt;/
+        
+      
+    
+    </summary>
+    
+      <category term="编程" scheme="/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>koch雪花</title>

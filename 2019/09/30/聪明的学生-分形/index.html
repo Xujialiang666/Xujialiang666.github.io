@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">爱苗的tree</title>
+  <title itemprop="name">聪明的学生 分形 | 爱苗的tree</title>
   
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -373,291 +373,120 @@
   </div>
 </header>
 
-      <div class="blank" style="padding-top: 0px;"></div>
-<div id="content" class="site-content">
+        <div class="pattern-center-blank"></div>
   
-  <div class="notice" style="margin-top:60px">
-    <i class="iconfont icon-notification">
-    </i>
-    <div class="notice-content">欢迎进入我的博客！</div>
-  </div>
-  
-  <div class="top-feature-row">
-  <h1 class="fes-title" style="font-family: 'Ubuntu', sans-serif;">
-  <i class="fa fa-anchor" aria-hidden="true">
-  </i>
-  START:DASH!!</h1>
-  
-  <div class="top-feature-v2">
-    <div class="the-feature square from_left_and_right">
-      <a href="/theme-sakura/" target="_blank">
-        <div class="img">
-          <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/startdash/sakura.md.png">
-        </div>
-        <div class="info">
-          <h3>Sakura</h3>
-          <p>本站 hexo 主题</p>
-        </div>
-      </a>
+    <div class="pattern-center ">
+      <div class="pattern-attachment-img">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://xjl666.oss-cn-beijing.aliyuncs.com/IMG_4187.JPG" class="lazyload" onerror="imgError(this,3)" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
+      </div>
+      <header class="pattern-header ">
+        <h1 class="entry-title">
+        </h1>
+      </header>
     </div>
-  </div>
   
-</div>
-  <div id="primary" class="content-area">
-    <main id="main" class="site-main" role="main">
-      <h1 class="main-title" style="font-family: 'Ubuntu', sans-serif;">
-      <i class="fa fa-envira" aria-hidden="true"></i>
-      Discovery</h1>
+  <div id="content" class="site-content">
+    <article class="post-item post-301 page type-page status-publish has-post-thumbnail hentry">
+      <p>一位教授逻辑学的教授有三名非常善于推理且精于心算的学生A，B和C。有一天,教授给他们三人出了一道题：教授在每个人脑门上贴了一张纸条并告诉他们，每个人的纸条上都写了一个正整数，且某两个数的和等于第三个。于是，每个学生都能看见贴在另外两个同学头上的整数，但却看不见自己的数。</p>
+<p>这时，教授先对学生A发问了：“你能猜出自己的数吗？”A回答：“不能。”<br>教授又转身问学生B：“你能猜出自己的数吗？”B想了想，也回答：“不能。”<br>教授再问学生C同样的问题，C思考了片刻后，摇了摇头：“不能”。<br>接着，教授又重新问A同样的问题，再问B和C，……，经过若干轮的提问之后，当教授再次询问某人时，此人突然露出了得意的笑容，把贴在自己头上的那个数准确无误的报了出来。</p>
+<p>现在，如果告诉你：教授在第N次提问时，轮到回答问题的那个人猜出了贴在自己头上的数是M，你能推断出另外两个学生的头上贴的是什么数吗？</p>
+<p>[提示]<br>在没有人猜出自己头上的数之前，大家对教授提问的回答始终都是“不能”；而且除此之外在A，B，C之间是没有进行任何信息交流的。也就是说，每个人推断的依据仅仅是另外两个人的头上数，以及大家对教授的提问所做出的否定回答。<br>教授总是从学生A开始提问的。<br>你可以假定，这三个足够聪明的学生能够根据已知的条件在最早的轮次猜出自己的数，并且永远都不会猜错。<br>稍经分析和推理，你将得出以下结论：总是头上贴着最大的那个数的人最先猜出自己头上的数。</p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+#define MAXN 10000+500
+int n,m,num[2222][4];
+int p(int x,int y)
+{
+    int c=y-x;
+    if(c&lt;0)
+        c+=3;
+    return c;
+}
+int times(int i,int j, int t1,int t2,int t3)
+{
+    int ans=0;
+    if(j&lt;=0||i&lt;=0) return 0;
+    if(i==j)
+        ans+=t3;
+    else if(i&gt;j)
+        ans+=times(j,i-j,t2,t3,t1)+p(t1,t3);
+    else
+        ans+=times(i,j-i,t1,t3,t2)+p(t2,t3);
+    return ans;
+}
+int main()
+{
+    while(scanf(&quot;%d%d&quot;,&amp;n,&amp;m)&amp;&amp;n+m!=-2)
+    {
+        if(n==-1&amp;&amp;m==-1)
+            return 0;
+        int t=n%3,a,b;
+        if(t==0)
+            a=1,b=2,t=3;
+        else if(t==2)
+            a=1,b=3;
+        else a=2,b=3;
+        int tot=0;
+        for(int i=1; i&lt;m; i++)
+        {
+            if(times(i,m-i,a,b,t)==n)
+            {
+                num[tot][a]=i;
+                num[tot][b]=m-i;
+                num[tot++][t]=m;
+            }
+        }
+        printf(&quot;%d\n&quot;,tot);
+        for(int i=0;i&lt;tot;i++)
+                printf(&quot;%d %d %d\n&quot;,num[i][1],num[i][2],num[i][3]);
+    }
+    return 0;
+}
+</code></pre><p>10.1 快乐!!!</p>
+
+      <!-- .entry-content -->
       
-  <!-- 首页默认取最最新文章集 -->
-  
-    
-<article  class="post post-list-thumb post-list-thumb-left"  class="post post-list-thumb" itemscope="" itemtype="http://schema.org/BlogPosting">
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "GyC3NzMvd0hT9Yyd2hYIC0MN-gzGzoHsz",
+        appKey: "mgOpfzbkHYqU92CV4IDlAUHQ",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
 
-  <div class="post-thumb">
-    <a href="/2019/09/30/聪明的学生-分形/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://xjl666.oss-cn-beijing.aliyuncs.com/IMG_4187.JPG">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2019-9-30 19:09</div>
-      <a href="/2019/09/30/聪明的学生-分形/" class="post-title">
-        <h3>聪明的学生 分形</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-            <a href="/categories/编程/">编程</a>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2019/09/30/聪明的学生-分形/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
+      <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+      <footer class="post-footer">
+        <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+        <div class="post-tags">
         </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2019/09/29/koch雪花/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://xjl666.oss-cn-beijing.aliyuncs.com/1.jpg">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2019-9-29 20:09</div>
-      <a href="/2019/09/29/koch雪花/" class="post-title">
-        <h3>koch雪花</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-            <a href="/categories/编程/">编程</a>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2019/09/29/koch雪花/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
+        <div class="post-share">
+          <div class="social-share sharehidden share-component"></div>
+          <i class="iconfont show-share icon-forward"></i>
         </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb post-list-thumb-left"  class="post post-list-thumb" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2019/09/29/测试图片/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://xjl666.oss-cn-beijing.aliyuncs.com/1.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2019-9-29 16:09</div>
-      <a href="/2019/09/29/测试图片/" class="post-title">
-        <h3>测试图片</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-            <a href="/categories/测试/">测试</a>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2019/09/29/测试图片/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
+      </footer><!-- .entry-footer -->
+    </article>
+      <!-- #post-## -->
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <a href="/about/" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/custom/avatar.jpg" itemprop="image" alt="xjl" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="https://xujialiang666.github.io/" itemprop="url" rel="author">xjl</a>
+            </h3>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2019/09/29/测试模块/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2019-9-29 15:09</div>
-      <a href="/2019/09/29/测试模块/" class="post-title">
-        <h3>测试模块</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-            <a href="/categories/测试/">测试</a>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2019/09/29/测试模块/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb post-list-thumb-left"  class="post post-list-thumb" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2019/09/29/还没修复完毕啊/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2019-9-29 13:09</div>
-      <a href="/2019/09/29/还没修复完毕啊/" class="post-title">
-        <h3>还没修复完毕啊</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-            <a href="/categories/技术/">技术</a>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2019/09/29/还没修复完毕啊/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2018/12/12/Hexo-Theme-Sakura/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://static.2heng.xin/wp-content/uploads//2019/02/wallhaven-672007-1-1024x576.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2018-12-12 22:12</div>
-      <a href="/2018/12/12/Hexo-Theme-Sakura/" class="post-title">
-        <h3>Hexo-Theme-Sakura</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-            <a href="/tags/web/">web<em>·</em></a>
-          
-            <a href="/tags/悦读/">悦读<em>·</em></a>
-          
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-            <a href="/categories/技术/">技术</a>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p>hexo-sakura主题使用教程</p>
-        <div class="post-bottom">
-          <a href="/2018/12/12/Hexo-Theme-Sakura/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-
-
-    </main>
-      <!-- 首页默认取最最新文章集 -->
-    <!--  -->
-  </div>
-  
+        <hr>
+        <p><i class="iconfont icon-write"></i>学习的小博客</p>
+      </section>
+  </div><!-- #primary -->
 </div>
-
     </div>    
     <div class="ins-search">
     <div class="ins-search-mask"></div>
