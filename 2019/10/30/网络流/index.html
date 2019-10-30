@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">Category: 编程 | 爱苗的tree</title>
+  <title itemprop="name">网络流 | 爱苗的tree</title>
   
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -373,171 +373,146 @@
   </div>
 </header>
 
+        <div class="pattern-center-blank"></div>
+  
+  <div id="content" class="site-content">
+    <article class="post-item post-301 page type-page status-publish has-post-thumbnail hentry">
+      <p> 网络流理解的网站: <a href="https://www.cnblogs.com/rmy020718/p/9546071.html" title="网络流" target="_blank" rel="noopener">网络流</a></p>
+<p> 有回溯，给程序后悔的机会。</p>
+<p> EK算法是以上算法的实现：每次寻找最短路进行增广。</p>
+<p>时间复杂度 O(m2n)</p>
+<p>首先我们定义几个数组以及变量：<br>结构体：储存三个变量，nxt，to，dis 　邻接表建边</p>
+<p>flow[ i ] ：表示流过 i 点的 v 值，也就是说目前经过到 i 点的路径上的最小的残量。</p>
+<p>dis[ i ]：表示 i 点距离源点的距离，S，T表示源点以及汇点</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;vector&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+const int MAX = 123123;
+#define INF  0x3f3f3f3f
+struct edge     //边的结构体
+{
+    int to, cap, rev;//到达的点，边的容量，反向边
+};
+vector &lt;edge&gt; G[MAX];//二维
+bool used[MAX]; //dfs的时候标记是否被访问过
+void add_edge(int from, int to, int cap)//建边
+{
+    struct edge a;
+    //正向建立
+    a.to = to;
+    a.cap = cap;
+    a.rev = G[to].size();
+    G[from].push_back(a);
+    //反向建立，反向边
+    a.to = from;
+    a.cap = 0;
+    a.rev = G[from].size()-1;//对应正向边。
+    G[to].push_back(a);
+}
+int dfs(int v, int t, int f)//寻找从v到t的最大流量
+{
+    if(v == t)               //找到终点，返回这条路径上的最大流
+        return f;
+    used[v] = true;       //标记访问过
+    for(int i=0; i&lt;G[v].size(); i++)//遍历从v出发的每一条边
+    {
+        edge &amp;e = G[v][i];//找到这个边
+        if(!used[e.to]&amp;&amp;e.cap&gt;0)//如果到达的点没有被访问过，并且这条边还可以流水，有容量
+        {
+            int d = dfs(e.to, t, min(f, e.cap));//继续dfs,注意最大流量是min(此条边的容量，之前的最小的容量)
+            if(d&gt;0)//如果存在这条边
+            {
+                e.cap -= d;//将容量减少
+                G[e.to][e.rev].cap += d;//反向边的容量增加
+                return d;//返回最大流量
+            }
+        }
+    }
+    return 0;//否则0
+}
+
+int max_flow(int s, int t)
+{
+    int flow = 0;//记录要输出的最大流量
+    for(;;)
+    {
+        memset(used, 0, sizeof(used));  //标记值清空
+        int f = dfs(s, t, INF);         //找到此时存在的一条边的最大流量
+        if(f==0)                        //此时说明已经没有符合的条件了
+        return flow;//返回最大流量
+        flow += f;//继续加。。
+    }
+}
+
+int main()
+{
+    int n, m;
+    while(~scanf(&quot;%d %d&quot;, &amp;n, &amp;m))
+    {
+        for(int i = 0;i &lt; m;i++)
+        {
+            G[i].clear();//注意清
+        }
+        for(int i = 0; i &lt; n; i++)
+        {
+            int a, b, c;
+            scanf(&quot;%d %d %d&quot;, &amp;a, &amp;b, &amp;c);
+            add_edge(a, b, c);
+        }
+        int w = max_flow(1, m);//寻找从1到m的最大流量。
+        printf(&quot;%d\n&quot;, w);
+    }
+    return 0;
+}
+
+</code></pre>
+      <!-- .entry-content -->
       
-<div class="pattern-center-blank"></div>
-<div class="pattern-center ">
-  <div class="pattern-attachment-img">
-    <img data-src="编程.img" class="lazyload" onerror="imgError(this,3)" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
-  </div>
-  <header class="pattern-header ">
-    <h1 class="cat-title">编程.zh</h1>
-    <span class="cat-des">
-      <p>编程.en</p>
-    </span>
-  </header>
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "GyC3NzMvd0hT9Yyd2hYIC0MN-gzGzoHsz",
+        appKey: "mgOpfzbkHYqU92CV4IDlAUHQ",
+        path: window.location.pathname,
+        placeholder: "你是我一生只会遇见一次的惊喜 ..."
+      })
+  }
+</script>
+
+      <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+      <footer class="post-footer">
+        <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+        <div class="post-tags">
+        </div>
+        <div class="post-share">
+          <div class="social-share sharehidden share-component"></div>
+          <i class="iconfont show-share icon-forward"></i>
+        </div>
+      </footer><!-- .entry-footer -->
+    </article>
+      <!-- #post-## -->
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <a href="/about/" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/custom/avatar.jpg" itemprop="image" alt="xjl" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="https://xujialiang666.github.io/" itemprop="url" rel="author">xjl</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i>学习的小博客</p>
+      </section>
+  </div><!-- #primary -->
 </div>
-<div id="content" class="site-content">
-  <div id="primary" class="content-area">
-    <main id="main" class="site-main" role="main">
-      
-  <!-- 首页默认取最最新文章集 -->
-  
-    <article class="post post-list" itemscope="" itemtype="http://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2019/09/30/聪明的学生-分形/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://xjl666.oss-cn-beijing.aliyuncs.com/IMG_4187.JPG" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2019/09/30/聪明的学生-分形/">
-    聪明的学生</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2019-9-30</div>
-    <p>
-    </p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2019/09/30/聪明的学生-分形/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="http://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2019/09/29/koch雪花/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://xjl666.oss-cn-beijing.aliyuncs.com/1.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2019/09/29/koch雪花/">
-    koch雪花</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2019-9-29</div>
-    <p>
-    </p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2019/09/29/koch雪花/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-
-
-      <div class="clearer">
-      </div>
-    </main>
-    <!--  -->
-    
-  </div>
-</div>
-
-<!-- 
-  
-    <article class="post post-list" itemscope="" itemtype="http://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2019/09/30/聪明的学生-分形/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://xjl666.oss-cn-beijing.aliyuncs.com/IMG_4187.JPG" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2019/09/30/聪明的学生-分形/">
-    聪明的学生</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2019-9-30</div>
-    <p>
-    </p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2019/09/30/聪明的学生-分形/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-    <article class="post post-list" itemscope="" itemtype="http://schema.org/BlogPosting">
-  <div class="post-entry">
-    <div class="feature">
-      <a href="/2019/09/29/koch雪花/">
-        <div class="overlay">
-          <i class="iconfont icon-text">
-          </i>
-        </div>
-        <img width="150" height="150" src="https://xjl666.oss-cn-beijing.aliyuncs.com/1.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" >
-      </a>
-    </div>
-    <h1 class="entry-title">
-    <a href="/2019/09/29/koch雪花/">
-    koch雪花</a>
-    </h1>
-    <div class="p-time">
-      <i class="iconfont icon-time">
-      </i>
-    2019-9-29</div>
-    <p>
-    </p>
-    <footer class="entry-footer">
-      <div class="post-more">
-        <a href="/2019/09/29/koch雪花/">
-          <i class="iconfont icon-caidan">
-          </i>
-        </a>
-      </div>
-    </footer>
-  </div>
-  <hr>
-</article>
-  
-
- -->
     </div>    
     <div class="ins-search">
     <div class="ins-search-mask"></div>
